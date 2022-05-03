@@ -40,4 +40,4 @@ const paintingCards = data =>{
 const addCard = e => {
 
 }
-//Parei em 32:41  https://www.youtube.com/watch?v=JL7Wo-ASah4
+//Parei em 32:41 
