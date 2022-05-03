@@ -11,8 +11,21 @@
     <div class="container">
         <h1>Sopping Cart</h1>
         <hr>
+        <div class="row" id="items"></div>
     </div>
-   
+
+    <template id="template-card">
+        <div class="col-12 mb-2 col-md-4">
+          <div class="card">
+              <img src="" alt="" class="card-img-top">
+            <div class="card-body">
+              <h5>Title</h5>
+              <p>price</p>
+              <button class="btn btn-dark">Comprar</button>
+            </div>
+          </div>
+        </div>
+      </template>
     
 
     <script src="app.js"></script>
