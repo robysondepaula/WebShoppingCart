@@ -1,5 +1,9 @@
 const cards = document.getElementById("cards");
+const items = document.getElementById("items");
+const footer = document.getElementById("footer");
 const templateCard = document.getElementById("template-card").content
+const templateFooter = document.getElementById("template-footer").content
+const templateCarrito = document.getElementById("template-carrito").content
 const fragment = document.createDocumentFragment()
 let shopCard = {}
 
@@ -58,11 +62,30 @@ const setCard = object => {
     }
 
     if(shopCard.hasOwnProperty(product.id)){
-        product.cantidad = shopCard[id].cantidad + 1 ;
+        product.cantidad = shopCard[product.id].cantidad + 1 ;
     }
 
     shopCard[product.id] = {...product}
 
-    console.log(shopCard);
+    paintCard()
 
+
+}
+
+const paintCard = () =>{
+//console.log(shopCard);
+    items.innerHTML = ''
+Object.values(shopCard).forEach(product => {
+    templateCarrito.querySelector("th").textContent = product.id
+    templateCarrito.querySelectorAll("td")[0].textContent = product.title
+    templateCarrito.querySelectorAll("td")[1].textContent = product.cantidad
+    templateCarrito.querySelector(".btn-info").dataset.id = product.id
+    templateCarrito.querySelector(".btn-danger").dataset.id = product.id
+    templateCarrito.querySelector("span").textContent = product.cantidad * product.precio
+
+    const clone = templateCarrito.cloneNode(true)
+    fragment.appendChild(clone)
+
+})
+items.appendChild(fragment);
 }
