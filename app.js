@@ -88,4 +88,35 @@ Object.values(shopCard).forEach(product => {
 
 })
 items.appendChild(fragment);
+
+
+paintFotter()
+}
+
+const paintFotter = () => {
+    footer.innerHTML = ''
+    if(Object.keys(shopCard).length === 0){
+        footer.innerHTML = `
+        <th scope="row" colspan="5">Empty Card! - start to buy!!</th>
+        `
+        return
+    }
+
+    const nQuantity = Object.values(shopCard).reduce((acc, {cantidad}) =>  acc + cantidad,0)
+    const nPrice = Object.values(shopCard).reduce((acc, {cantidad, precio})=> acc + cantidad * precio, 0)
+    
+    templateFooter.querySelectorAll("td")[0].textContent = nQuantity
+    templateFooter.querySelector("span").textContent = nPrice
+
+    const clone = templateFooter.cloneNode(true)
+    fragment.appendChild(clone)
+
+    footer.appendChild(fragment)
+
+    const btnEmpty = document.getElementById("vaciar-carrito")
+    btnEmpty.addEventListener("click", ()=>{
+        shopCard ={}
+        paintCard();
+    })
+
 }
