@@ -15,6 +15,9 @@ cards.addEventListener("click", e =>{
     addCard(e);
 })
 
+items.addEventListener("click", e =>{
+    btnAction(e);
+})
 
 const fetchData = async() => {
     try{
@@ -119,4 +122,29 @@ const paintFotter = () => {
         paintCard();
     })
 
+
+}
+
+const btnAction = e => {
+   // console.log(e.target);
+    //Add
+    if(e.target.classList.contains("btn-info")){
+        
+        //shopCard[e.target.dataset.id]
+
+        const product = shopCard[e.target.dataset.id]
+        product.cantidad++;
+        shopCard[e.target.dataset.id] = {...product}
+        paintCard();
+    }
+    if(e.target.classList.contains("btn-danger")){
+        const product = shopCard[e.target.dataset.id]
+        product.cantidad--;
+        if(product.cantidad === 0){
+            delete  shopCard[e.target.dataset.id]
+        }
+        paintCard();
+    }
+
+    e.stopPropagation();
 }
