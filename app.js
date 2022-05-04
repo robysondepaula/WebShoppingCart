@@ -38,6 +38,31 @@ const paintingCards = data =>{
 
 
 const addCard = e => {
+   // console.log(e.target)
+    //console.log(e.target.classList.contains("btn-dark"))
+    if(e.target.classList.contains("btn-dark")){
+     
+        setCard(e.target.parentElement);
+
+    }
+    e.stopPropagation();
+}
+
+const setCard = object => {
+    
+    const product = {
+        id: object.querySelector(".btn-dark").dataset.id,
+        title: object.querySelector("h5").textContent,
+        precio: object.querySelector("p").textContent,
+        cantidad : 1
+    }
+
+    if(shopCard.hasOwnProperty(product.id)){
+        product.cantidad = shopCard[id].cantidad + 1 ;
+    }
+
+    shopCard[product.id] = {...product}
+
+    console.log(shopCard);
 
 }
-//Parei em 32:41 
