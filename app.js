@@ -9,6 +9,10 @@ let shopCard = {}
 
 document.addEventListener('DOMContentLoaded', () =>{
     fetchData()
+    if(localStorage.getItem('shopCard')){
+        shopCard = JSON.parse(localStorage.getItem("shopCard"))
+        paintCard()
+    }
 })
 
 cards.addEventListener("click", e =>{
@@ -41,6 +45,9 @@ const paintingCards = data =>{
        fragment.appendChild(clone)
     })
     cards.appendChild(fragment);
+
+    paintCard();
+    localStorage.setItem('shopCard', JSON.stringify(shopCard))
 }
 
 
